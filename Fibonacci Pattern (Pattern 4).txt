@@ -1,0 +1,54 @@
+Take N (number of rows), print the following pattern (for N = 4)
+0
+1 1
+2 3 5
+8 13 21 34
+
+Input Format
+Constraints
+0 < N < 100
+
+Output Format
+Sample Input
+4
+Sample Output
+0 
+1    1 
+2    3     5 
+8   13    21    34
+Explanation
+Each number is separated from other by a tab. For given input n, You need to print n(n+1)/2 fibonacci numbers. Kth row contains , next k fibonacci numbers.
+
+//Program
+
+#include<iostream>
+using namespace std;
+
+int fibPattern(int num)
+{
+    int a = 0, b = 1, c, i;
+    if( num == 0)
+        return a;
+    for(i = 2; i <= num; i++)
+    {
+       c = a + b;
+       a = b;
+       b = c;
+    }
+    return b;
+}
+	
+int main() {
+	int n,num=0;
+	cin>>n;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<=i;j++)
+		{
+			cout<<fibPattern(num)<<"	";
+			num++;
+		}
+		cout<<endl;
+	}
+	return 0;
+}
