@@ -1,0 +1,30 @@
+Find the length of the string S.
+
+Input Format
+The first line contains a string S.
+
+Constraints
+Output Format
+Display a single line output containing length of the string S.
+
+Sample Input
+coding blocks
+Sample Output
+13
+
+//Program
+
+#include<iostream>
+using namespace std;
+int main () {
+	string str;
+	int len=0,i=0;
+	getline(cin,str);
+	while(str[i]!='\0')
+	{
+		len++;
+		i++;
+	}
+	cout<<len;
+	return 0;
+}

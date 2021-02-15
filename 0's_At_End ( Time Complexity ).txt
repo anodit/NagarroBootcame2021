@@ -1,0 +1,48 @@
+Take as input N, a number. Take N more inputs to form an array. Reorder items of array in such a manner that all 0’s are moved to end. Target complexity is O(n)
+
+Input Format
+Take as input N, a number. Take N more inputs to form an array
+
+Constraints
+None
+
+Output Format
+Display the array containing all the zeros at the end , the numbers should be separated by a space
+
+Sample Input
+5
+0
+0
+0
+0
+1
+Sample Output
+1 0 0 0 0 
+
+//Program
+#include<iostream>
+using namespace std;
+int main() {
+	int n,countZero=0,noOfOne=0;
+	cin>>n;
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	for(int i=0;i<n;i++)
+	{
+		if(arr[i]==0)
+			countZero++;
+	}
+	noOfOne=n-countZero;
+	for(int i=0;i<noOfOne;i++)
+	{
+		cout<<1<<" ";
+	}
+	for(int i=0;i<countZero;i++)
+	{
+		cout<<0<<" ";
+	}
+	return 0;
+}
