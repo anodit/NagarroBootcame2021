@@ -1,0 +1,115 @@
+Given two sorted arrays of different sizes, print their union and intersection.
+An union of two arrays will be the set containing all elements of both the arrays (no duplicates).
+An Intersection of two arrays will be the set of elements that are present in both the arrays (no duplicates).
+Print both the union and the intersection in increasing order.
+
+Input Format
+First line contains size of first array.
+Second line contains the elements of the first array.
+Third line contains size of second array.
+Fourth line contains the elements of the second array.
+
+Constraints
+1 <= Size of arrays <= 1000
+
+Output Format
+Print the union of the two arrays in first line and intersection in second line. Both should be printed in increasing order.
+
+Sample Input
+5
+1 2 4 6 10 
+3
+8 9 10 
+Sample Output
+1 2 4 6 8 9 10 
+10 
+
+//Program
+
+#include<iostream>
+using namespace std;
+
+// Function to remove duplicate elements 
+// This function returns new size of modified 
+// array. 
+int removeDuplicates(int arr[], int n) 
+{ 
+    if (n==0 || n==1) 
+        return n; 
+  
+    // To store index of next unique element 
+    int j = 0; 
+  
+    // Doing same as done in Method 1 
+    // Just maintaining another updated index i.e. j 
+    for (int i=0; i < n-1; i++) 
+        if (arr[i] != arr[i+1]) 
+            arr[j++] = arr[i]; 
+  
+    arr[j++] = arr[n-1]; 
+  
+    return j; 
+} 
+
+void printUnion(int arr1[], int arr2[], int m, int n) 
+{ 
+    int i = 0, j = 0; 
+    while (i < m && j < n) { 
+        if (arr1[i] < arr2[j]) 
+            cout << arr1[i++] << " "; 
+  
+        else if (arr2[j] < arr1[i]) 
+            cout << arr2[j++] << " "; 
+  
+        else { 
+            cout << arr2[j++] << " "; 
+            i++; 
+        } 
+    } 
+  
+    /* Print remaining elements of the larger array */
+    while (i < m) 
+        cout << arr1[i++] << " "; 
+  
+    while (j < n) 
+        cout << arr2[j++] << " "; 
+} 
+
+void printIntersection(int arr1[], int arr2[], int m, int n) 
+{ 
+    int i = 0, j = 0; 
+    while (i < m && j < n) { 
+        if (arr1[i] < arr2[j]) 
+            i++; 
+        else if (arr2[j] < arr1[i]) 
+            j++; 
+        else /* if arr1[i] == arr2[j] */
+        { 
+            cout << arr2[j] << " "; 
+            i++; 
+            j++; 
+        } 
+    } 
+} 
+
+int main () {
+	int m,n;
+	cin>>m;
+	int arr1[m];
+	for(int i=0;i<m;i++)
+	{
+		cin>>arr1[i];
+	}
+	m = removeDuplicates(arr1, m);
+	cin>>n;
+	int arr2[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr2[i];
+	}
+	n = removeDuplicates(arr2, n);
+	printUnion(arr1,arr2,m,n);
+	cout<<endl;
+	printIntersection(arr1,arr2,m,n);
+	return 0;
+}

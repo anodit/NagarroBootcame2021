@@ -1,0 +1,63 @@
+
+Take as input S, a string. Write a function that removes all consecutive duplicates. Print the value returned.
+
+Input Format
+String
+
+Constraints
+A string of length between 1 to 1000
+
+Output Format
+String
+
+Sample Input
+aabccba
+Sample Output
+abcba
+Explanation
+For the given example, "aabccba", Consecutive Occurrence of a is 2, b is 1, and c is 2.
+
+After removing all of the consecutive occurences, the Final ans will be : - "abcba".
+
+//Program
+
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+// A recursive function that removes  
+// consecutive duplicates from string S 
+void removeDuplicates(char* S) 
+{ 
+    // When string is empty, return 
+    if (S[0] == '\0') 
+        return; 
+  
+    // if the adjacent characters are same 
+    if (S[0] == S[1]) { 
+          
+        // Shift character by one to left 
+        int i = 0;  
+        while (S[i] != '\0') { 
+            S[i] = S[i + 1]; 
+            i++; 
+        } 
+  
+        // Check on Updated String S 
+        removeDuplicates(S); 
+    } 
+  
+    // If the adjacent characters are not same 
+    // Check from S+1 string address 
+    removeDuplicates(S + 1); 
+} 
+  
+// Driver Program 
+int main() 
+{ 
+    char S1[1000];
+	cin>>S1; 
+    removeDuplicates(S1); 
+    cout << S1;
+  
+    return 0; 
+} 
