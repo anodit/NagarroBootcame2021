@@ -1,0 +1,48 @@
+count number of 1s in binary representation of an integer
+
+Input Format
+Input N = Number of Test Cases, followed by N numbers
+
+Constraints
+Output Format
+Number of Set Bits in each number each in a new line
+
+Sample Input
+3
+5
+4
+15
+Sample Output
+2
+1
+4
+Explanation
+Convert Binary to Decimal first and then count number of 1's present in all digits.
+
+//Program
+
+#include<iostream>
+using namespace std;
+
+unsigned int countSetBits(unsigned int n)
+{
+    unsigned int count = 0;
+    while (n) {
+        count += n & 1;
+        n >>= 1;
+    }
+    return count;
+}
+
+int main() 
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		cout<<countSetBits(n)<<endl;
+	}
+	return 0;
+}
