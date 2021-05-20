@@ -1,0 +1,80 @@
+Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+Input Format
+First line contains integer N (size of the array) followed by N more integers.
+
+Constraints
+Output Format
+Majority Element of array
+
+Sample Input
+3
+1 1 2
+Sample Output
+1
+Explanation
+Number of 1's in the array is more than 3/2 , Hence majority element is 1
+
+//Program
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int majorityElement(int *arr, int n)
+{
+    // sort the array in O(nlogn)
+    sort(arr, arr+n);
+      
+    int count = 1, max_ele = -1, temp = arr[0], ele, f=0;
+      
+    for(int i=1;i<n;i++)
+    {
+        // increases the count if the same element occurs
+        // otherwise starts counting new element
+        if(temp==arr[i])
+        {
+            count++;
+        }
+        else
+        {
+            count = 1;
+            temp = arr[i];
+        }
+          
+        // sets maximum count
+        // and stores maximum occured element so far
+        // if maximum count becomes greater than n/2
+        // it breaks out setting the flag
+        if(max_ele<count)
+        {
+            max_ele = count;
+            ele = arr[i];
+              
+            if(max_ele>(n/2))
+            {
+                f = 1;
+                break;
+            }
+        }
+    }
+      
+    // returns maximum occured element
+    // if there is no such element, returns -1
+    return (f==1 ? ele : -1);
+}
+  
+
+int main()
+{
+    int n;
+	cin>>n;
+	int arr[n];
+	for(int i=0;i<n;i++)
+		cin>>arr[i];
+    // Function calling 
+    cout<<majorityElement(arr, n);
+  
+    return 0;
+}

@@ -1,0 +1,81 @@
+Check if the binary representation of a number is palindrome or not.
+
+Input Format
+First line contains T - no of testcases. Next T lines contain one integer each containing the input N.
+
+Constraints
+1 <= T <= 10000
+1 <= N <= 1018
+Expected Time Complexity: O(log N)
+Expected Space Complexity: O(logN)
+
+Output Format
+Print "true" or "false" (without quotes) for each testcase in a new line.
+
+Sample Input
+2
+17
+16
+Sample Output
+true
+false
+Explanation
+(17)10 = (10001)2 Which is pallindrome hence output is true.
+(16)10 = (10000)2 Which is pallindrome hence output is false.
+
+//Program
+
+#include <bits/stdc++.h>
+using namespace std;
+  
+// function to reverse bits of a number
+unsigned int reverseBits(unsigned int n)
+{
+    unsigned int rev = 0;
+  
+    // traversing bits of 'n' from the right
+    while (n > 0) {
+  
+        // bitwise left shift 'rev' by 1
+        rev <<= 1;
+  
+        // if current bit is '1'
+        if (n & 1 == 1)
+            rev ^= 1;
+  
+        // bitwise right shift 'n' by 1
+        n >>= 1;
+    }
+  
+    // required number
+    return rev;
+}
+  
+// function to check whether binary representation
+// of a number is palindrome or not
+bool isPalindrome(unsigned int n)
+{
+    // get the number by reversing bits in the
+    // binary representation of 'n'
+    unsigned int rev = reverseBits(n);
+  
+    return (n == rev);
+}
+  
+// Driver program to test above
+int main()
+{
+    int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		if (isPalindrome(n))
+        	cout << "true"<<endl;
+   		else
+        	cout << "false"<<endl;
+	}
+    
+    return 0;
+}

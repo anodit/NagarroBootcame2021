@@ -1,0 +1,50 @@
+Take as input N, a number. Print odd numbers in decreasing sequence (up until 0) and even numbers in increasing sequence (up until N) using Recursion
+
+Input Format
+Constraints
+1 <= N <=1000
+
+Output Format
+Sample Input
+5
+Sample Output
+5
+3
+1
+2
+4
+
+//Program
+
+#include<iostream>
+using namespace std;
+void oddDec(int n)
+{
+	if(n<=0)
+		return;
+	cout<<n<<endl;
+	oddDec(n-2);
+}
+void evenInc(int n)
+{
+	if(n<=0)
+		return;
+	evenInc(n-2);
+	cout<<n<<endl;
+}
+int main()
+{
+	int n;
+	cin>>n;
+	if(n%2!=0)
+	{
+		oddDec(n);
+		evenInc(n-1);
+	}
+	else
+	{
+		oddDec(n-1);
+		evenInc(n);
+	}
+	return 0;
+}
